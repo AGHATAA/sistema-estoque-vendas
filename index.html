@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+</head>
+<body>
+    <div class="container">
+        <!--CADASTRO-->
+        <main class="s-cadastro">
+            <!--SEÇÃO DE CADASTRO-->
+            <div class="form-box">
+                <h2>CRIE UMA <br> CONTA</h2>
+                <p>Crie sua conta.</p>
+                
+                <form action="POST">
+                    <!--NOME-->
+                    <div class="grupo-campo">
+                        <label for="name">Nome</label> <br>
+                        <input type="text" id="name" required>
+                    </div>
+
+                    <!--EMAIL-->
+                    <div class="grupo-campo">
+                        <label for="email">Email</label> <br>
+                        <input type="email" id="email" required>
+                    </div>
+
+                    <!--SENHA-->
+                    <div class="grupo-campo">
+                        <label for="password">Senha</label> <br>
+                        <input type="password" id="password" required> 
+                    </div>
+
+                    <button type="submit" class="bt-submit">Conectar</button> <br>
+                    <a href="login.html">Já possui uma conta? Clique aqui.</a>
+                </form>                
+            </div>
+        </main>
+        <aside class="s-apresentacao">
+            <h1>Sistema de Gerenciamento de Estoque e Vendas</h1>
+        </aside>
+    </div>
+</body>
+</html>
