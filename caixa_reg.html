@@ -7,7 +7,7 @@
 </head>
 <body>
     <!--HEADER-->
-    <header class=""> 
+    <header class="cabecalho"> 
         <nav>
             <a href="caixa_reg.html"> Caixa Registradora </a> |
             <a href="#"> Estoque </a> |
@@ -17,21 +17,33 @@
 
     <!--MAIN-->
     <main>
+        <!--FORMULARIO BUSCA DE PRODUTOS-->
         <div class="buscar-produto">
             <form action="#" method="post">
-                <label for="text">Código do produto</label>
+                <label for="text">Codigo do produto</label>
                 <input type="text" id="text" name="codigo_produto" required>
 
                 <label for="number">Qtd</label>
                 <input type="number" id="number" name="quantidade" required>
 
-                <button type="submit" name="acao">Buscar</button>
-                <button type="submit" name="acao">Finalizar compra</button>
-                <button type="submit" name="acao">Remover produto</button>
+                <button type="submit" name="acao" class="btn-buscar">Buscar</button>
+                <button type="submit" name="acao" class="btn-finalizar">Finalizar compra</button>
+                <button type="submit" name="acao" class="btn-remover">Remover produto</button>
             </form>
-
-            
         </div>
+
+        <!--TABELA DE PRODUTOS-->
+        <section class="tabela-container">
+            <table>
+                <tr>
+                    <th>N. produto</th>
+                    <th>Qtd</th>
+                    <th>Preço</th>
+                    <th>Subtotal</th>
+                </tr>
+            </table>
+
+        </section>
         
     </main>
     
