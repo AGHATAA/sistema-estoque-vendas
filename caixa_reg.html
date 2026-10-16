@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,14 +35,33 @@
         <!--TABELA DE PRODUTOS-->
         <section class="tabela-container">
             <table>
-                <tr>
-                    <th>N. produto</th>
-                    <th>Qtd</th>
-                    <th>Preço</th>
-                    <th>Subtotal</th>
-                </tr>
-            </table>
+                <thead>
+                    <tr>
+                        <th>N. produto</th>
+                        <th>Qtd</th>
+                        <th>Preço</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
 
+                <tbody id="lista-produtos">
+                    <!--
+                        Os produtos devem ser inseridos aqui
+                        com PHP.
+                    -->
+
+                    <tr class="linha-vazia">
+                        <td colspan="5">
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="total-compra">
+            <h2>Total da compra:</h2>
+            <output id="valor-total">R$ 0,00</output>
         </section>
         
     </main>
