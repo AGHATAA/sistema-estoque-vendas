@@ -10,8 +10,28 @@
         <nav>
             <a href="caixa_reg.html"> Caixa Registradora </a> |
             <a href="estoque.html"> Estoque </a> |
-            <a href="cadastro_produto.html"> Cadastro de Estoque </a>
+            <a href="cadastro_produto.html"> Cadastro de Produto </a>
         </nav>
     </header>
+
+    <main class="cadastro-produto">
+        <form method="post" action="#">
+            <label for="text">Nome:</label>
+            <input type="text" id="name" name="nome">
+
+            <label for="number">Código do Produto:</label>
+            <input type="number" id="number" name="codigo_produto">
+
+            <label for="number">Preço:</label>
+            <input type="number" id="number" name="preco-produto">
+
+            <label for="number">Quantidade:</label>
+            <input type="number" id="number" name="quantidade">
+
+            <button type="submit" name="acao" class="btn-adicionar">Adicionar</button>
+            <button type="submit" name="acao" class="btn-alterar">Alterar</button>
+            <button type="submit" name="acao" class="btn-excluir">Excluir</button>
+        </form>
+    </main>
 </body>
 </html>
