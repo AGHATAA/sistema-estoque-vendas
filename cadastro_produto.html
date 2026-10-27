@@ -4,34 +4,479 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Produto</title>
+
+    <style>
+        /* ================================
+           RESET
+        ================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f4f6f9;
+            color: #1e293b;
+        }
+
+        /* ================================
+           CABEÇALHO
+        ================================= */
+
+        .cabecalho {
+            height: 72px;
+            background: #0f172a;
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+            box-shadow: 0 2px 10px rgba(15, 23, 42, 0.12);
+        }
+
+        .cabecalho nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cabecalho a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 11px 18px;
+            border-radius: 8px;
+            transition: 0.2s ease;
+        }
+
+        .cabecalho a:hover {
+            background: #1e293b;
+            color: #ffffff;
+        }
+
+        .cabecalho a:last-child {
+            background: #2563eb;
+            color: #ffffff;
+        }
+
+        .cabecalho a:last-child:hover {
+            background: #1d4ed8;
+        }
+
+        /* ================================
+           ÁREA PRINCIPAL
+        ================================= */
+
+        .cadastro-produto {
+            width: 100%;
+            max-width: 900px;
+            margin: 55px auto;
+            padding: 0 25px;
+        }
+
+        /* ================================
+           FORMULÁRIO
+        ================================= */
+
+        #form-produto {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px 25px;
+        }
+
+        #form-produto::before {
+            content: "Cadastro de Produto";
+            grid-column: 1 / -1;
+
+            font-size: 26px;
+            font-weight: 700;
+            color: #0f172a;
+
+            padding-bottom: 5px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        /* ================================
+           LABELS
+        ================================= */
+
+        #form-produto label {
+            display: block;
+            margin-bottom: 8px;
+
+            color: #475569;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* ================================
+           INPUTS
+        ================================= */
+
+        #form-produto input {
+            width: 100%;
+            height: 48px;
+
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+
+            padding: 0 14px;
+
+            background: #ffffff;
+            color: #0f172a;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.2s ease;
+        }
+
+        #form-produto input:hover {
+            border-color: #94a3b8;
+        }
+
+        #form-produto input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+
+        /* ================================
+           BOTÕES
+        ================================= */
+
+        #form-produto button {
+            height: 48px;
+            border: none;
+            border-radius: 9px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+        }
+
+        #form-produto button:hover {
+            transform: translateY(-1px);
+        }
+
+        #form-produto button:active {
+            transform: translateY(0);
+        }
+
+        .btn-adicionar {
+            background: #2563eb;
+            color: #ffffff;
+        }
+
+        .btn-adicionar:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-alterar {
+            background: #e2e8f0;
+            color: #334155;
+        }
+
+        .btn-alterar:hover {
+            background: #cbd5e1;
+        }
+
+        .btn-excluir {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .btn-excluir:hover {
+            background: #fecaca;
+        }
+
+        /* ================================
+           ORGANIZAÇÃO DOS BOTÕES
+        ================================= */
+
+        .btn-adicionar {
+            grid-column: 1;
+        }
+
+        .btn-alterar {
+            grid-column: 2;
+        }
+
+        .btn-excluir {
+            grid-column: 1 / -1;
+        }
+
+        /* ================================
+           MENSAGEM
+        ================================= */
+
+        #mensagem {
+            margin-top: 20px;
+
+            min-height: 45px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 10px 16px;
+
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 9px;
+
+            color: #475569;
+
+            font-size: 14px;
+            font-weight: 500;
+
+            box-shadow: 0 5px 15px rgba(15, 23, 42, 0.04);
+        }
+
+        /* ================================
+           RESPONSIVO
+        ================================= */
+
+        @media (max-width: 700px) {
+
+            .cabecalho {
+                padding: 0 20px;
+            }
+
+            .cabecalho nav {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .cabecalho a {
+                padding: 9px 10px;
+                font-size: 12px;
+            }
+
+            .cadastro-produto {
+                margin: 30px auto;
+                padding: 0 15px;
+            }
+
+            #form-produto {
+                grid-template-columns: 1fr;
+                padding: 25px;
+            }
+
+            #form-produto::before {
+                grid-column: 1;
+            }
+
+            .btn-adicionar,
+            .btn-alterar,
+            .btn-excluir {
+                grid-column: 1;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <header class="cabecalho"> 
+
+    <header class="cabecalho">
         <nav>
-            <a href="caixa_reg.html"> Caixa Registradora </a> |
-            <a href="estoque.html"> Estoque </a> |
+            <a href="caixa_reg.html"> Caixa Registradora </a>
+            <a href="estoque.html"> Estoque </a>
             <a href="cadastro_produto.html"> Cadastro de Produto </a>
         </nav>
     </header>
 
     <main class="cadastro-produto">
-        <form method="post" action="#">
-            <label for="text">Nome:</label>
-            <input type="text" id="name" name="nome">
 
-            <label for="number">Código do Produto:</label>
-            <input type="number" id="number" name="codigo_produto">
+        <form id="form-produto">
 
-            <label for="number">Preço:</label>
-            <input type="number" id="number" name="preco-produto">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
 
-            <label for="number">Quantidade:</label>
-            <input type="number" id="number" name="quantidade">
+            <label for="codigo_produto">Código do Produto:</label>
+            <input type="text" id="codigo_produto"
+                   name="codigo_produto" required>
 
-            <button type="submit" name="acao" class="btn-adicionar">Adicionar</button>
-            <button type="submit" name="acao" class="btn-alterar">Alterar</button>
-            <button type="submit" name="acao" class="btn-excluir">Excluir</button>
+            <label for="preco">Preço:</label>
+            <input type="number" id="preco" name="preco"
+                   min="0.01" step="0.01" required>
+
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" name="quantidade"
+                   min="0" step="1" required>
+
+            <button type="submit" name="acao"
+                    value="adicionar" class="btn-adicionar">
+                Adicionar
+            </button>
+
+            <button type="button" id="btn-alterar"
+                    class="btn-alterar">
+                Alterar
+            </button>
+
+            <button type="button" id="btn-excluir"
+                    class="btn-excluir">
+                Excluir
+            </button>
+
         </form>
+
+        <p id="mensagem"></p>
+
     </main>
+
+    <script>
+
+const API = "http://127.0.0.1:3000/produtos";
+
+// Campos do formulário
+const formulario = document.getElementById("form-produto");
+const campoNome = document.getElementById("nome");
+const campoCodigo = document.getElementById("codigo_produto");
+const campoPreco = document.getElementById("preco");
+const campoQuantidade = document.getElementById("quantidade");
+const mensagem = document.getElementById("mensagem");
+
+// Mostrar mensagens na página
+function mostrarMensagem(texto) {
+    mensagem.textContent = texto;
+}
+
+// CADASTRAR PRODUTO
+formulario.addEventListener("submit", async (evento) => {
+    evento.preventDefault();
+
+    const produto = {
+        Nome: campoNome.value.trim(),
+        CodigoProduto: campoCodigo.value.trim(),
+        Preco: Number(campoPreco.value),
+        Quantidade: Number(campoQuantidade.value)
+    };
+
+    try {
+        const resposta = await fetch(API, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(produto)
+        });
+
+        const dados = await resposta.json();
+
+        if (!resposta.ok) {
+            throw new Error(dados.mensagem || "Erro ao cadastrar.");
+        }
+
+        mostrarMensagem(dados.mensagem);
+        formulario.reset();
+
+    } catch (erro) {
+        mostrarMensagem("Erro ao cadastrar: " + erro.message);
+    }
+});
+
+// ALTERAR PRODUTO
+document.getElementById("btn-alterar")
+    .addEventListener("click", async () => {
+
+        const codigo = campoCodigo.value.trim();
+
+        if (!codigo) {
+            mostrarMensagem("Informe o código do produto.");
+            return;
+        }
+
+        if (
+            !campoNome.value.trim() ||
+            campoPreco.value === "" ||
+            campoQuantidade.value === ""
+        ) {
+            mostrarMensagem("Preencha nome, preço e quantidade.");
+            return;
+        }
+
+        const produto = {
+            Nome: campoNome.value.trim(),
+            Preco: Number(campoPreco.value),
+            Quantidade: Number(campoQuantidade.value)
+        };
+
+        try {
+            const resposta = await fetch(
+                `${API}/${encodeURIComponent(codigo)}`,
+                {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(produto)
+                }
+            );
+
+            const dados = await resposta.json();
+
+            if (!resposta.ok) {
+                throw new Error(dados.mensagem || "Erro ao alterar.");
+            }
+
+            mostrarMensagem(dados.mensagem);
+
+        } catch (erro) {
+            mostrarMensagem("Erro ao alterar: " + erro.message);
+        }
+    });
+
+// EXCLUIR (DESATIVAR) PRODUTO
+document.getElementById("btn-excluir")
+    .addEventListener("click", async () => {
+
+        const codigo = campoCodigo.value.trim();
+
+        if (!codigo) {
+            mostrarMensagem("Informe o código do produto.");
+            return;
+        }
+
+        if (!confirm(`Deseja excluir o produto ${codigo} do estoque?`)) {
+            return;
+        }
+
+        try {
+            const resposta = await fetch(
+                `${API}/${encodeURIComponent(codigo)}`,
+                { method: "DELETE" }
+            );
+
+            const dados = await resposta.json();
+
+            if (!resposta.ok) {
+                throw new Error(dados.mensagem || "Erro ao excluir.");
+            }
+
+            mostrarMensagem(dados.mensagem);
+            formulario.reset();
+
+        } catch (erro) {
+            mostrarMensagem("Erro ao excluir: " + erro.message);
+        }
+    });
+
+</script>
+
 </body>
 </html>

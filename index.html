@@ -1,46 +1,899 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Criar Conta | Sistema de Estoque e Vendas</title>
+
+
+    <style>
+
+        /* ================================
+           RESET
+        ================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* ================================
+           BODY
+        ================================= */
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8fafc 0%,
+                    #eef2ff 100%
+                );
+
+            color: #1e293b;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 30px;
+        }
+
+
+        /* ================================
+           CONTAINER PRINCIPAL
+        ================================= */
+
+        .container {
+
+            width: 100%;
+
+            max-width: 1050px;
+
+            min-height: 620px;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            background: #ffffff;
+
+            border:
+                1px solid
+                #e2e8f0;
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 60px
+                rgba(15, 23, 42, 0.12);
+        }
+
+
+        /* ================================
+           LADO DO CADASTRO
+        ================================= */
+
+        .s-cadastro {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 55px;
+        }
+
+
+        /* ================================
+           FORMULÁRIO
+        ================================= */
+
+        .form-box {
+
+            width: 100%;
+
+            max-width: 390px;
+        }
+
+
+        /* ================================
+           TÍTULO
+        ================================= */
+
+        .form-box h2 {
+
+            color: #0f172a;
+
+            font-size: 32px;
+
+            line-height: 1.15;
+
+            font-weight: 750;
+
+            letter-spacing: -0.8px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .form-box > p {
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+            margin-bottom: 32px;
+        }
+
+
+        /* ================================
+           CAMPOS
+        ================================= */
+
+        .grupo-campo {
+
+            margin-bottom: 20px;
+        }
+
+
+        .grupo-campo label {
+
+            display: block;
+
+            color: #334155;
+
+            font-size: 13px;
+
+            font-weight: 650;
+
+            margin-bottom: 8px;
+        }
+
+
+        .grupo-campo input {
+
+            width: 100%;
+
+            height: 50px;
+
+            padding: 0 15px;
+
+            border:
+                1px solid
+                #cbd5e1;
+
+            border-radius: 10px;
+
+            background: #ffffff;
+
+            color: #0f172a;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .grupo-campo input:hover {
+
+            border-color:
+                #94a3b8;
+        }
+
+
+        .grupo-campo input:focus {
+
+            border-color:
+                #2563eb;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(37, 99, 235, 0.10);
+        }
+
+
+        .grupo-campo input::placeholder {
+
+            color: #94a3b8;
+        }
+
+
+        /* ================================
+           BOTÃO
+        ================================= */
+
+        .bt-submit {
+
+            width: 100%;
+
+            height: 50px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #1d4ed8
+                );
+
+            color: #ffffff;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            font-weight: 650;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 18px
+                rgba(37, 99, 235, 0.20);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .bt-submit:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 12px 24px
+                rgba(37, 99, 235, 0.25);
+        }
+
+
+        .bt-submit:active {
+
+            transform:
+                translateY(0);
+        }
+
+
+        /* ================================
+           MENSAGEM
+        ================================= */
+
+        #mensagem {
+
+            min-height: 20px;
+
+            margin-top: 16px;
+
+            margin-bottom: 0;
+
+            color: #475569;
+
+            font-size: 13px;
+
+            text-align: center;
+        }
+
+
+        /* ================================
+           LINK LOGIN
+        ================================= */
+
+        .form-box a {
+
+            display: block;
+
+            margin-top: 22px;
+
+            color: #2563eb;
+
+            font-size: 13px;
+
+            font-weight: 550;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            transition:
+                color 0.2s ease;
+        }
+
+
+        .form-box a:hover {
+
+            color: #1d4ed8;
+
+            text-decoration:
+                underline;
+        }
+
+
+        /* ================================
+           APRESENTAÇÃO
+        ================================= */
+
+        .s-apresentacao {
+
+            position: relative;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #0f172a,
+                    #172554
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 55px;
+
+            overflow: hidden;
+        }
+
+
+        .s-apresentacao::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 260px;
+
+            height: 260px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(37, 99, 235, 0.18);
+
+            top: -90px;
+
+            right: -80px;
+        }
+
+
+        .s-apresentacao::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+
+            height: 220px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(59, 130, 246, 0.10);
+
+            bottom: -90px;
+
+            left: -70px;
+        }
+
+
+        .s-apresentacao-conteudo {
+
+            position: relative;
+
+            z-index: 1;
+
+            max-width: 400px;
+
+            text-align: center;
+        }
+
+
+        /* ================================
+           ÍCONE
+        ================================= */
+
+        .icone-sistema {
+
+            width: 72px;
+
+            height: 72px;
+
+            margin:
+                0 auto 28px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255, 255, 255, 0.10);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.12);
+
+            color: #ffffff;
+
+            font-size: 30px;
+
+            box-shadow:
+                0 12px 30px
+                rgba(0, 0, 0, 0.18);
+        }
+
+
+        .s-apresentacao h1 {
+
+            color: #ffffff;
+
+            font-size: 30px;
+
+            line-height: 1.25;
+
+            font-weight: 700;
+
+            letter-spacing: -0.5px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .s-apresentacao p {
+
+            color: #cbd5e1;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+            max-width: 330px;
+
+            margin: 0 auto;
+        }
+
+
+        /* ================================
+           RESPONSIVO
+        ================================= */
+
+        @media (max-width: 800px) {
+
+            body {
+
+                padding: 20px;
+            }
+
+
+            .container {
+
+                grid-template-columns: 1fr;
+
+                min-height: auto;
+
+                max-width: 500px;
+            }
+
+
+            .s-apresentacao {
+
+                min-height: 260px;
+
+                padding: 40px 30px;
+
+                order: -1;
+            }
+
+
+            .s-apresentacao h1 {
+
+                font-size: 25px;
+            }
+
+
+            .s-apresentacao p {
+
+                font-size: 13px;
+            }
+
+
+            .s-cadastro {
+
+                padding:
+                    45px 30px;
+            }
+        }
+
+
+        @media (max-width: 480px) {
+
+            body {
+
+                padding: 12px;
+            }
+
+
+            .container {
+
+                border-radius: 16px;
+            }
+
+
+            .s-apresentacao {
+
+                min-height: 220px;
+
+                padding:
+                    35px 22px;
+            }
+
+
+            .s-cadastro {
+
+                padding:
+                    35px 22px;
+            }
+
+
+            .form-box h2 {
+
+                font-size: 28px;
+            }
+
+
+            .icone-sistema {
+
+                width: 62px;
+
+                height: 62px;
+
+                font-size: 25px;
+
+                margin-bottom: 20px;
+            }
+
+
+            .s-apresentacao h1 {
+
+                font-size: 22px;
+            }
+        }
+
+    </style>
+
 </head>
+
+
 <body>
+
+
     <div class="container">
-        <!--CADASTRO-->
+
+
+        <!-- ================================
+             CADASTRO
+        ================================= -->
+
         <main class="s-cadastro">
-            <!--SEÇÃO DE CADASTRO-->
+
             <div class="form-box">
-                <h2>CRIE UMA <br> CONTA</h2>
-                <p>Crie sua conta.</p>
-                
-                <form action="#" method="post">
-                    <!--NOME-->
+
+
+                <h2>
+                    CRIE SUA<br>
+                    CONTA
+                </h2>
+
+
+                <p>
+                    Cadastre-se para acessar
+                    o sistema de gerenciamento
+                    de estoque e vendas.
+                </p>
+
+
+                <form id="form-cadastro">
+
+
+                    <!-- NOME -->
+
                     <div class="grupo-campo">
-                        <label for="text">Nome</label> <br>
-                        <input type="text" id="nome" name="nome" required>
+
+                        <label for="nome">
+                            Nome completo
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nome"
+                            name="nome"
+                            placeholder="Digite seu nome"
+                            autocomplete="name"
+                            required
+                        >
+
                     </div>
 
-                    <!--EMAIL-->
+
+                    <!-- EMAIL -->
+
                     <div class="grupo-campo">
-                        <label for="email">Email</label> <br>
-                        <input type="email" id="email" name="email" required>
+
+                        <label for="email">
+                            E-mail
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Digite seu e-mail"
+                            autocomplete="email"
+                            required
+                        >
+
                     </div>
 
-                    <!--SENHA-->
+
+                    <!-- SENHA -->
+
                     <div class="grupo-campo">
-                        <label for="password">Senha</label> <br>
-                        <input type="password" id="password" name="password" required> 
+
+                        <label for="password">
+                            Senha
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Crie uma senha"
+                            autocomplete="new-password"
+                            required
+                        >
+
                     </div>
 
-                    <button type="submit" class="bt-submit">Conectar</button> <br>
-                    <a href="login.html">Já possui uma conta? Clique aqui.</a>
-                </form>                
+
+                    <!-- BOTÃO -->
+
+                    <button
+                        type="submit"
+                        class="bt-submit"
+                    >
+                        Criar conta
+                    </button>
+
+
+                    <!-- MENSAGEM -->
+
+                    <p id="mensagem"></p>
+
+
+                    <!-- LOGIN -->
+
+                    <a href="login.html">
+                        Já possui uma conta? Entrar
+                    </a>
+
+
+                </form>
+
             </div>
+
         </main>
+
+
+        <!-- ================================
+             APRESENTAÇÃO
+        ================================= -->
+
         <aside class="s-apresentacao">
-            <h1>Sistema de Gerenciamento de Estoque e Vendas</h1>
+
+            <div class="s-apresentacao-conteudo">
+
+
+                <div class="icone-sistema">
+                    ◈
+                </div>
+
+
+                <h1>
+                    Sistema de Gerenciamento
+                    de Estoque e Vendas
+                </h1>
+
+
+                <p>
+                    Organize seus produtos,
+                    acompanhe seu estoque e
+                    gerencie suas vendas em
+                    um único sistema.
+                </p>
+
+
+            </div>
+
         </aside>
+
+
     </div>
+
+
+    <!-- ================================
+         CADASTRO / API
+    ================================= -->
+
+    <script>
+
+        const formulario =
+            document.getElementById(
+                "form-cadastro"
+            );
+
+
+        const campoNome =
+            document.getElementById(
+                "nome"
+            );
+
+
+        const campoEmail =
+            document.getElementById(
+                "email"
+            );
+
+
+        const campoSenha =
+            document.getElementById(
+                "password"
+            );
+
+
+        const mensagem =
+            document.getElementById(
+                "mensagem"
+            );
+
+
+        formulario.addEventListener(
+            "submit",
+            async (evento) => {
+
+                evento.preventDefault();
+
+
+                const usuario = {
+
+                    Nome:
+                        campoNome.value.trim(),
+
+                    Email:
+                        campoEmail.value.trim(),
+
+                    Senha:
+                        campoSenha.value
+
+                };
+
+
+                try {
+
+                    mensagem.textContent =
+                        "Cadastrando usuário...";
+
+
+                    const resposta =
+                        await fetch(
+                            "http://127.0.0.1:3000/usuarios",
+                            {
+
+                                method: "POST",
+
+                                headers: {
+
+                                    "Content-Type":
+                                        "application/json"
+
+                                },
+
+                                body:
+                                    JSON.stringify(
+                                        usuario
+                                    )
+
+                            }
+                        );
+
+
+                    const dados =
+                        await resposta.json();
+
+
+                    if (!resposta.ok) {
+
+                        mensagem.textContent =
+                            dados.mensagem ||
+                            "Erro ao cadastrar usuário.";
+
+                        return;
+                    }
+
+
+                    mensagem.textContent =
+                        dados.mensagem ||
+                        "Usuário cadastrado com sucesso!";
+
+
+                    formulario.reset();
+
+
+                    setTimeout(() => {
+
+                        window.location.href =
+                            "login.html";
+
+                    }, 1500);
+
+
+                } catch (erro) {
+
+                    console.error(
+                        "Erro ao cadastrar usuário:",
+                        erro
+                    );
+
+
+                    mensagem.textContent =
+                        "Não foi possível conectar ao servidor.";
+
+                }
+
+            }
+        );
+
+    </script>
+
+
 </body>
+
 </html>
