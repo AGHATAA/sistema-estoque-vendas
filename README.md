@@ -430,6 +430,44 @@ Algumas melhorias podem ser implementadas futuramente, como:
 
 ---
 
+## Como executar
+
+### Pré-requisitos
+
+- Node.js
+- SQL Server
+- Git
+- VS Code (recomendado)
+
+### 1. Clone o projeto
+
+git clone ...
+
+### 2. Instale as dependências
+
+cd backend
+npm install
+
+### 3. Configure o banco de dados
+
+Crie o banco:
+SistemaEstoqueVendas
+
+Configure o arquivo .env com suas credenciais.
+
+### 4. Inicie o backend
+
+npm start
+
+O servidor será iniciado em:
+
+http://127.0.0.1:3000
+
+### 5. Execute o frontend
+
+Abra o index.html utilizando o Live Server.
+
+
 ## 👩‍💻 Autora
 
 **Aghata Roberta Tavares Damasceno**
